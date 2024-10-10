@@ -1,13 +1,60 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css'; 
+import { useState } from 'react';
+import templeLogo from './logo192.png';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-function MainHeader()
-{
-  return <h1>React course</h1>;
-}
-function SubHeader()
-{
-  return <h1>Welcome</h1>;
-}
-root.render(<div><MainHeader /><SubHeader /></div>);
+
+const Header = () => {
+  return (
+    <header className="top-header">
+      <h1>Helpline number 9999999999. For any query call 8888888888 (9 AM to 5 PM)</h1>
+    </header>
+  );
+};
+
+const HeaderWithImage = () => {
+  return (
+    <h2 className="header-with-image">
+      <img src="data:image/jpeg;base64,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" alt="Temple Logo" />
+       GopinathJiAshram
+    </h2>
+  );
+};
+const ContextMenu = () => {
+  return (
+    <div className="context-menu">
+      <ul>
+        <li>Option 1</li>
+        <li>Option 2</li>
+        <li>Option 3</li>
+      </ul>
+    </div>
+  );
+};
+
+const App = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = (event) => {
+    event.preventDefault();
+    setMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <div>
+      <Header />  {/* First header with helpline numbers */}
+      
+      <HeaderWithImage />  {/* Second header with image */}
+      
+      <button className="button-with-menu" onClick={toggleMenu}>
+        Open Menu
+      </button>
+
+      {isMenuOpen && <ContextMenu />}  {/* Conditional rendering of the context menu */}
+    </div>
+  );
+};
+root.render(<div><App /></div>);
 
